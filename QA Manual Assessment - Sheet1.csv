@@ -1,0 +1,79 @@
+Traditional Style Test Cases (Positive),,,,,,
+,,,,,,
+Test Case ID,Scenario Description,Test Cases ,Test Steps ,Test Case Type,Test Data,Expected Result
+TC_01,To Verify user can compose and send email successfully,"To test Send email with valid recipient, subject, and body","1. Login to Gmail
+2. Click Compose
+3. Enter recipient email
+4. Enter Subject as ""Incubyte""
+5. Enter Body as ""QA test for Incubyte""
+6. Click Send",Positive,Valid Email ID,Email sent successfully and appears in Sent folder
+TC_02,To Verify subject is entered correctly,Enter subject while composing email,"1. Open Compose window
+2. Enter Subject",Positive,Incubyte,Subject should be displayed correctly
+TC_03,To Verify email body is entered correctly,Enter email body text,"1. Open Compose window
+2. Enter body text",Positive,QA test for Incubyte,Body text should be displayed correctly
+TC_04,To Verify email is delivered to recipient,Send email and check recipient inbox,Send email with valid details,Positive,Valid Email ID,Email should be received by recipient
+TC_05,To Verify Send button functionality,Click Send after entering mandatory fields,Complete email and click Send,Positive,Valid Data,Email should be sent successfully
+TC_06,To Verify email appears in Sent folder,Check Sent folder after sending email,Send email and navigate to Sent folder,Positive,Valid Data,Sent email should be available in Sent folder
+TC_07,To Verify compose window opens successfully,Click Compose button,Login and click Compose,Positive,N/A,Compose window should open
+,,,,,,
+Traditional Style Test Cases (Negative),,,,,,
+,,,,,,
+TC_08,To Verify email cannot be sent without recipient,Attempt to send email without recipient,Enter subject and body only and click Send,Negative,Blank Recipient,Validation error should be displayed
+TC_09,To Verify invalid email validation,Enter invalid recipient email,Enter invalid email and click Send,Negative,abc@,Error message should be displayed
+TC_10,To Verify sending email with blank subject,Send email without subject,"Enter recipient and body, leave subject blank",Negative,Blank Subject,Gmail should display subject warning popup
+TC_11,To Verify sending email with blank body,Send email without body,Enter recipient and subject only,Negative,Blank Body,Email should be sent with empty body after confirmation
+TC_12,To Verify special characters in email address,Enter invalid special characters,Enter invalid email and send,Negative,test@#$%.com,Validation error should be displayed
+TC_13,To Verify send functionality without internet,Disconnect internet and send email,Compose email and click Send,Negative,Network Off,Email should remain queued or fail gracefully
+TC_14,To Verify session timeout behavior,Compose email after session expiration,Let session expire and try sending,Negative,Expired Session,User should be prompted to login again
+TC_15,To Verify maximum subject length handling,Enter extremely long subject,Enter 1000+ characters in subject,Negative,Long String,Application should handle input without crash
+,,,,,,
+"BDD Style Test Cases
+Feature: Gmail Compose Email
+",,,,,,
+,,,,,,
+,,,,,,
+,Scenario ,,,,,
+1,Successfully Send Email,"
+Given user is logged into Gmail
+When user clicks on Compose
+And enters a valid recipient email
+And enters subject ""Incubyte""
+And enters body ""QA test for Incubyte""
+And clicks Send
+Then the email should be sent successfully
+And should appear in Sent folder",,,,
+2,Send Email Without Recipient,"
+Given user is logged into Gmail
+When user clicks Compose
+And enters subject ""Incubyte""
+And enters body ""QA test for Incubyte""
+And clicks Send
+Then a recipient required validation message should be displayed",,,,
+3,Invalid Recipient Email,"
+Given user is logged into Gmail
+When user clicks Compose
+And enters recipient email ""abc@""
+And enters subject ""Incubyte""
+And enters body ""QA test for Incubyte""
+And clicks Send
+Then an invalid email address error should be displayed",,,,
+4,Send Email Without Subject,"
+Given user is logged into Gmail
+When user clicks Compose
+And enters a valid recipient email
+And enters body ""QA test for Incubyte""
+And clicks Send
+Then Gmail should display a warning about missing subject",,,,
+5,Send Email Without Internet,"
+Given user is logged into Gmail
+And internet connection is disconnected
+When user composes an email
+And clicks Send
+Then email should not be sent immediately
+And user should receive an appropriate notification",,,,
+,,,,,,
+"Test Summary :
+Total Test Cases: 15
+Positive Test Cases: 7
+Negative Test Cases: 8
+BDD Scenarios: 5",,,,,,
