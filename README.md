@@ -1,0 +1,1 @@
+# https-github.com-your-username-qa-manual-assessment-blob-main-QA-20Manual-20Assessment-20--20Sheet1.
